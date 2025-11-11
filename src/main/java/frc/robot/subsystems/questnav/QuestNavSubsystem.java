@@ -1,10 +1,13 @@
 package frc.robot.subsystems.questnav;
 
-import edu.wpi.first.math.geometry.Pose3d;
-import edu.wpi.first.math.geometry.Transform3d;
+import edu.wpi.first.math.geometry.Translation2d;
+import edu.wpi.first.math.geometry.Pose2d;
+import edu.wpi.first.math.geometry.Rotation2d;
+import edu.wpi.first.math.geometry.Transform2d;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import gg.questnav.questnav.PoseFrame;
 import gg.questnav.questnav.QuestNav;
+
 
 public class QuestNavSubsystem extends SubsystemBase {
     
@@ -20,61 +23,7 @@ public QuestNavSubsystem() {
 @Override
   public void periodic() {
     questNav.commandPeriodic();
-    
 
-    // Log QuestNav data
-    Logger.recordOutput("QuestNav/Connected", questNav.isConnected());
-    Logger.recordOutput("QuestNav/Tracking", questNav.isTracking());
-    Logger.recordOutput("QuestNav/Latency", questNav.getLatency());
-
-    // Log QuestNav pose data for AdvantageScope visualization
-    try {
-      Pose2d currentPose = getRobotPose();
-
-      // Log complete pose for 2D field visualization
-      Logger.recordOutput("QuestNav/Pose", currentPose);
-
-      // Log raw QuestNav pose (before robot transform) for comparison
-      PoseFrame[] poseFrames = questNav.getAllUnreadPoseFrames();
-      if (poseFrames.length > 0) {
-        Pose2d rawQuestPose = poseFrames[poseFrames.length - 1].questPose();
-        if (rawQuestPose != null) {
-          Logger.recordOutput("QuestNav/RawPose", rawQuestPose);
-        }
-      }
-
-    } catch (Exception e) {
-      Logger.recordOutput("QuestNav/Error", e.getMessage());
-    }
-
-    // Log battery percentage if available
-    questNav
-        .getBatteryPercent()
-        .ifPresent(battery -> Logger.recordOutput("QuestNav/BatteryPercent", battery));
-
-    // Log frame count if available
-    questNav
-        .getFrameCount()
-        .ifPresent(frameCount -> Logger.recordOutput("QuestNav/FrameCount", frameCount));
-
-    // Log additional data for plotting and analysis
-    try {
-      PoseFrame[] poseFrames = questNav.getAllUnreadPoseFrames();
-      Logger.recordOutput("QuestNav/PoseFrameCount", poseFrames.length);
-
-      // Log app timestamp if available
-      questNav
-          .getAppTimestamp()
-          .ifPresent(timestamp -> Logger.recordOutput("QuestNav/AppTimestamp", timestamp));
-
-      // Log tracking lost counter if available
-      questNav
-          .getTrackingLostCounter()
-          .ifPresent(counter -> Logger.recordOutput("QuestNav/TrackingLostCounter", counter));
-
-    } catch (Exception e) {
-      // Ignore errors for additional logging
-    }
   }
 
 
