@@ -1,5 +1,13 @@
 import org.gradle.internal.os.OperatingSystem
 
+dependencyResolutionManagement {
+		    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+		    repositories {
+			    mavenCentral()
+			    maven { url 'https://jitpack.io' }
+		    }
+	    }
+
 pluginManagement {
     repositories {
         mavenLocal()

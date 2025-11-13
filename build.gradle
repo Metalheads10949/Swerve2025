@@ -52,6 +52,10 @@ def includeDesktopSupport = true
 // Defining my dependencies. In this case, WPILib (+ friends), and vendor libraries.
 // Also defines JUnit 5.
 dependencies {
+    
+    //This is the custom YAGSL that we made to use QuestNav as the IMU
+    implementation 'com.github.Metalheads10949:YAGSL-QuestNav:main-SNAPSHOT'
+
     annotationProcessor wpi.java.deps.wpilibAnnotations()
     implementation wpi.java.deps.wpilib()
     implementation wpi.java.vendor.java()
