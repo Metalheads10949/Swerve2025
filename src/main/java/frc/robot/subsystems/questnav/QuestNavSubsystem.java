@@ -8,7 +8,6 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import gg.questnav.questnav.PoseFrame;
 import gg.questnav.questnav.QuestNav;
 
-
 public class QuestNavSubsystem extends SubsystemBase {
     
 private final QuestNav questNav;

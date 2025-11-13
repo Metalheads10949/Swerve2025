@@ -1,13 +1,5 @@
 import org.gradle.internal.os.OperatingSystem
 
-dependencyResolutionManagement {
-		    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
-		    repositories {
-			    mavenCentral()
-			    maven { url 'https://jitpack.io' }
-		    }
-	    }
-
 pluginManagement {
     repositories {
         mavenLocal()
@@ -33,6 +25,15 @@ pluginManagement {
         }
     }
 }
+/*
+dependencyResolutionManagement {
+		    repositoriesMode.set(RepositoriesMode.PREFER_SETTINGS)
+		    repositories {
+			    mavenCentral()
+			    maven { url 'https://jitpack.io' }
+		    }
+	    }
 
+**/
 Properties props = System.getProperties();
 props.setProperty("org.gradle.internal.native.headers.unresolved.dependencies.ignore", "true");

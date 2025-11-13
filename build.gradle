@@ -54,7 +54,7 @@ def includeDesktopSupport = true
 dependencies {
     
     //This is the custom YAGSL that we made to use QuestNav as the IMU
-    implementation 'com.github.Metalheads10949:YAGSL-QuestNav:main-SNAPSHOT'
+    //implementation 'com.github.Metalheads10949:YAGSL-QuestNav:main-SNAPSHOT'
 
     annotationProcessor wpi.java.deps.wpilibAnnotations()
     implementation wpi.java.deps.wpilib()
